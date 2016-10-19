@@ -3,81 +3,34 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
-  )
-(require 'cl)
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
-;;add whatever packages you want here
-(defvar sswanv/packages '(
-			  company
-			  monokai-theme
-			  hungry-delete
-			  swiper
-			  counsel
-			  smartparens
-			  js2-mode
-			  nodejs-repl
-			  exec-path-from-shell
-			  )  "Default packages")
+(package-initialize)
 
-(setq package-selected-packages sswanv/packages)
-
-(defun sswanv/packages-installed-p ()
-  (loop for pkg in sswanv/packages
-	when (not (package-installed-p pkg)) do (return nil)
-	finally (return t)))
-
-(unless (sswanv/packages-installed-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg sswanv/packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
+(require 'init-packages)
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(require 'hungry-delete)
-(global-hungry-delete-mode t)
-
-(require 'smartparens-config)
-(smartparens-global-mode t)
-;; (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-
-(setq auto-mode-alist
-      (append
-       '(("\\.js\\'" . js2-mode))
-       auto-mode-alist))
-
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-h f") 'counsel-describe-function)
-(global-set-key (kbd "C-h v") 'counsel-describe-variable)
+(global-auto-revert-mode t)
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (global-linum-mode t)
 (setq inhibit-splash-screen t)
 
+;; (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
+
 (defun open-my-init-file ()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
-(global-company-mode t)
+
 (setq-default cursor-type 'bar)
 
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 (require 'org)
 (setq org-src-fontify-natively t)
@@ -95,7 +48,15 @@
 
 (global-hl-line-mode t)
 
-(load-theme 'monokai t)
+
+
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-h f") 'counsel-describe-function)
+(global-set-key (kbd "C-h v") 'counsel-describe-variable)
 
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
@@ -103,6 +64,15 @@
 
 (setq org-agenda-files '("~/org"))
 (global-set-key (kbd "C-c a") 'org-agenda)
+
+
+
+(abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table '(
+					    ("8ss" "sswanv")
+					    ))
+
+(setq ring-bell-function 'ignore)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
