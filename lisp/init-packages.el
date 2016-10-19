@@ -33,9 +33,11 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 (global-hungry-delete-mode t)
 
-(require 'smartparens-config)
 (smartparens-global-mode t)
 
 (ivy-mode 1)
@@ -50,6 +52,7 @@
 (popwin-mode t)
 
 (load-theme 'monokai t)
+
 (global-company-mode t)
 
 (provide 'init-packages)
