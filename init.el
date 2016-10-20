@@ -17,6 +17,12 @@
 (require 'init-org)
 (require 'init-keybindings)
 
+;; (load "init-packages")
+;; (load "init-ui")
+;; (load "init-better-defaults")
+;; (load "init-org")
+;; (load "init-keybindings")
+
 (setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
 
 (load-file custom-file)
