@@ -22,6 +22,7 @@
 			  js2-refactor
 			  expand-region
 			  iedit
+			  org-pomodoro
 			  )  "Default packages")
 
 (setq package-selected-packages sswanv/packages)
@@ -81,14 +82,13 @@
 
   (setq indent-tabs-mode nil))
 
-(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
 
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
-(js2r-add-keybindings-with-prefix "C-c C-m")
 
-(global-set-key (kbd "M-s i") 'counsel-imenu)
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "M-s e") 'iedit-mode)
+
+
+(require 'org-pomodoro)
 
 (provide 'init-packages)
