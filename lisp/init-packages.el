@@ -23,6 +23,9 @@
 			  expand-region
 			  iedit
 			  org-pomodoro
+			  helm-ag
+			  flycheck
+			  auto-yasnippet
 			  )  "Default packages")
 
 (setq package-selected-packages sswanv/packages)
@@ -46,6 +49,7 @@
 
 (smartparens-global-mode t)
 (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -82,13 +86,12 @@
 
   (setq indent-tabs-mode nil))
 
-
-
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 
-
-
-
 (require 'org-pomodoro)
+
+(require 'yasnippet)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (provide 'init-packages)

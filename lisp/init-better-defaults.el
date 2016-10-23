@@ -93,5 +93,6 @@
 	regexp-history)
   (call-interactively 'occur))
 
+(set-face-attribute 'region nil :background "#666")
 
 (provide 'init-better-defaults)
