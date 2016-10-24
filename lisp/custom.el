@@ -5,9 +5,12 @@
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 0.08)
  '(company-minimum-prefix-length 1)
+ '(evil-leader/leader "SPC")
+ '(evil-want-C-u-scroll t)
  '(org-pomodoro-long-break-length 40)
  '(popwin:popup-window-position (quote right))
- '(popwin:popup-window-width 120))
+ '(popwin:popup-window-width 120)
+ '(which-key-idle-delay 0.1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
