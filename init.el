@@ -3,9 +3,9 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
 (package-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (defun open-my-init-file ()
   (interactive)

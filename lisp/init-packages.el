@@ -1,9 +1,11 @@
+
+(require 'cl)
+
 (when (>= emacs-major-version 24)
   (require 'package)
   (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 			   ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
   )
-(require 'cl)
 
 ;;add whatever packages you want here
 (defvar sswanv/packages '(
@@ -144,6 +146,5 @@
 	      )))
 
 (which-key-mode t)
-(setq which-key-side-window-location 'right)
 
 (provide 'init-packages)
