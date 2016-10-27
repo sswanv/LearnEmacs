@@ -10,7 +10,7 @@
  '(org-pomodoro-long-break-length 40)
  '(popwin:popup-window-position (quote right))
  '(popwin:popup-window-width 120)
- '(which-key-idle-delay 0.1))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

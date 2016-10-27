@@ -3,8 +3,10 @@
 
 (when (>= emacs-major-version 24)
   (require 'package)
-  (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-			   ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+  ;; (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+  ;; 			   ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+  (setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
+			   ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
   )
 
 ;;add whatever packages you want here
@@ -35,6 +37,8 @@
 			  evil-nerd-commenter
 			  which-key
 			  use-package
+			  company-anaconda
+			  anaconda-mode
 			  )  "Default packages")
 
 (setq package-selected-packages sswanv/packages)
@@ -51,8 +55,16 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :if (and (eq system-type 'darwin) (display-graphic-p))
+  :config
+  (progn
+    (when (string-match-p "/zsh$" (getenv "SHELL"))
+      (setq exec-path-from-shell-arguments '("-l")))
+
+    (exec-path-from-shell-initialize)
+    )
+  )
 
 (global-hungry-delete-mode t)
 
@@ -147,5 +159,9 @@
 	      )))
 
 (which-key-mode t)
+
+(add-hook 'python-mode-hook
+	  (lambda()
+	    (set (make-local-variable 'company-backends) '((company-anaconda company-dabbrev-code) company-dabbrev))))
 
 (provide 'init-packages)
